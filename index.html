@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benfa Kuang — Navigation Algorithm Engineer | SLAM Developer</title>
+    <meta name="description" content="Benfa Kuang — Navigation Algorithm Engineer specializing in SLAM, robotics perception, and autonomous systems. Based in Shenzhen, China.">
+    <meta name="keywords" content="Benfa Kuang, Navigation Algorithm Engineer, SLAM, C++, Python, Robotics, Autonomous Systems, Shenzhen">
+    <meta name="author" content="Benfa Kuang">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://benfakuang.github.io/">
+    <!-- Open Graph (social preview) -->
+    <meta property="og:title" content="Benfa Kuang — Navigation Algorithm Engineer">
+    <meta property="og:description" content="SLAM, robotics perception, autonomous systems. C++ & Python. Based in Shenzhen.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://benfakuang.github.io/">
+    <meta property="og:site_name" content="Benfa Kuang">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Benfa Kuang — Navigation Algorithm Engineer">
+    <meta name="twitter:description" content="SLAM, robotics perception, autonomous systems. C++ & Python. Based in Shenzhen.">
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0d1117;
+            --bg-card: #161b22;
+            --bg-card-hover: #1c2333;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --accent-glow: rgba(88, 166, 255, 0.15);
+            --green: #3fb950;
+            --orange: #d2991d;
+            --purple: #a371f7;
+            --radius: 12px;
+            --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+            --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ===== Animated Grid Background ===== */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(48, 54, 61, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(48, 54, 61, 0.3) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 40%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 40%, transparent 70%);
+        }
+
+        /* ===== Container ===== */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== Header / Hero ===== */
+        .hero {
+            text-align: center;
+            padding: 80px 0 48px;
+        }
+
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 auto 24px;
+            box-shadow: 0 0 40px var(--accent-glow);
+            user-select: none;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .hero .tagline {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-family: var(--font-mono);
+        }
+
+        .hero .tagline .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.1em;
+            background: var(--accent);
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* ===== Section Cards ===== */
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-bottom: 20px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .section:hover {
+            border-color: #485060;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .section h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 .icon {
+            font-size: 1.2rem;
+        }
+
+        /* ===== Contact Grid ===== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: var(--bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.2s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-icon.phone { background: rgba(63, 185, 80, 0.15); color: var(--green); }
+        .contact-icon.email { background: rgba(88, 166, 255, 0.15); color: var(--accent); }
+        .contact-icon.location { background: rgba(210, 153, 29, 0.15); color: var(--orange); }
+        .contact-icon.github { background: rgba(163, 113, 247, 0.15); color: var(--purple); }
+
+        .contact-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-value {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        /* ===== About ===== */
+        .about-text {
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* ===== Skills ===== */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            border: 1px solid var(--border);
+            background: var(--bg);
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        /* ===== Experience Timeline ===== */
+        .timeline-item {
+            position: relative;
+            padding-left: 24px;
+            padding-bottom: 28px;
+            border-left: 1px solid var(--border);
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 4px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 2px;
+        }
+
+        .timeline-company {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* ===== Education ===== */
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            gap: 16px;
+        }
+
+        .edu-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .edu-item:first-child { padding-top: 0; }
+
+        .edu-degree { font-weight: 600; }
+        .edu-school { color: var(--text-muted); font-size: 0.9rem; }
+        .edu-year { color: var(--text-muted); font-size: 0.85rem; font-family: var(--font-mono); white-space: nowrap; }
+
+        /* ===== Footer ===== */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+        }
+
+        .footer .heart { color: #f85149; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 600px) {
+            .hero { padding: 48px 0 32px; }
+            .hero h1 { font-size: 1.8rem; }
+            .section { padding: 20px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .edu-item { flex-direction: column; gap: 2px; }
+        }
+
+        /* ===== Print Styles ===== */
+        @media print {
+            .bg-grid { display: none; }
+            body { background: #fff; color: #000; }
+            .section { border: 1px solid #ccc; background: #fff; box-shadow: none; }
+            .section h2 { color: #000; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+
+    <div class="container">
+
+        <!-- ====== HERO ====== -->
+        <header class="hero">
+            <div class="avatar">B</div>
+            <h1>Benfa Kuang</h1>
+            <p class="tagline">
+                <span id="typewriter-text"></span><span class="cursor"></span>
+            </p>
+        </header>
+
+        <!-- ====== CONTACT ====== -->
+        <section class="section" id="contact">
+            <h2><span class="icon">📬</span> Contact</h2>
+            <div class="contact-grid">
+                <a href="tel:19973561580" class="contact-item">
+                    <div class="contact-icon phone">📱</div>
+                    <div>
+                        <div class="contact-label">Mobile</div>
+                        <div class="contact-value">19973561580</div>
+                    </div>
+                </a>
+                <a href="mailto:1763554768@qq.com" class="contact-item">
+                    <div class="contact-icon email">✉️</div>
+                    <div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">1763554768@qq.com</div>
+                    </div>
+                </a>
+                <div class="contact-item">
+                    <div class="contact-icon location">📍</div>
+                    <div>
+                        <div class="contact-label">Location</div>
+                        <div class="contact-value">Shenzhen, China</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== ABOUT ====== -->
+        <section class="section" id="about">
+            <h2><span class="icon">👤</span> About Me</h2>
+            <p class="about-text">
+                Hello! I'm a Navigation Algorithm Engineer specializing in SLAM (Simultaneous
+                Localization and Mapping), robotics perception, and autonomous systems. With
+                strong proficiency in C++ and Python, I develop high-performance algorithms
+                for real-time navigation in complex environments. I'm passionate about pushing
+                the boundaries of what autonomous systems can perceive and achieve.
+            </p>
+        </section>
+
+        <!-- ====== SKILLS ====== -->
+        <section class="section" id="skills">
+            <h2><span class="icon">🛠️</span> Skills</h2>
+            <div class="skills-container">
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SLAM</span>
+                <span class="skill-tag">ROS / ROS2</span>
+                <span class="skill-tag">Computer Vision</span>
+                <span class="skill-tag">Sensor Fusion</span>
+                <span class="skill-tag">Path Planning</span>
+                <span class="skill-tag">Kalman Filters</span>
+                <span class="skill-tag">LiDAR</span>
+                <span class="skill-tag">OpenCV</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Linux</span>
+            </div>
+        </section>
+
+        <!-- ====== EXPERIENCE ====== -->
+        <section class="section" id="experience">
+            <h2><span class="icon">💼</span> Experience</h2>
+            <div class="timeline-item">
+                <div class="timeline-date">2023.7 — Present</div>
+                <div class="timeline-title">Navigation Algorithm Engineer</div>
+                <div class="timeline-company">Broncus</div>
+                <div class="timeline-desc">
+                    Developing SLAM and navigation algorithms for autonomous systems. Working on
+                    real-time localization, mapping, sensor fusion, and path planning using C++
+                    and Python. Contributing to core perception and navigation modules deployed
+                    in production environments.
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== EDUCATION ====== -->
+        <section class="section" id="education">
+            <h2><span class="icon">🎓</span> Education</h2>
+            <div class="edu-item">
+                <div>
+                    <div class="edu-degree">M.S. in Control Science and Engineering</div>
+                    <div class="edu-school">Xinjiang University</div>
+                </div>
+                <div class="edu-year">2020.9 — 2023.6</div>
+            </div>
+            <div class="edu-item">
+                <div>
+                    <div class="edu-degree">B.S. in Electrical Engineering and Automation</div>
+                    <div class="edu-school">Tarim University</div>
+                </div>
+                <div class="edu-year">2015.9 — 2019.6</div>
+            </div>
+        </section>
+
+        <!-- ====== FOOTER ====== -->
+        <footer class="footer">
+            <p>Made with <span class="heart">❤</span> by Benfa Kuang &copy; 2026</p>
+        </footer>
+
+    </div>
+
+    <!-- ====== Typewriter Effect ====== -->
+    <script>
+        const phrases = [
+            'Navigation Algorithm Engineer',
+            'SLAM Developer',
+            'C++ & Python Enthusiast',
+            'Problem Solver',
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const el = document.getElementById('typewriter-text');
+
+        function type() {
+            const current = phrases[phraseIndex];
+            if (isDeleting) {
+                el.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                el.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === current.length) {
+                speed = 1500; // pause at end
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                speed = 300;
+            }
+
+            setTimeout(type, speed);
+        }
+
+        type();
+    </script>
+
+</body>
+</html>
