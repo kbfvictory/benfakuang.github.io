@@ -352,6 +352,68 @@
 
         .footer .heart { color: #f85149; }
 
+        /* ===== Publications ===== */
+        .pub-subtitle {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 14px;
+        }
+
+        .pub-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+        }
+
+        .pub-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .pub-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .pub-title a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .pub-title a:hover { color: #79c0ff; text-decoration: underline; }
+
+        .pub-authors {
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .pub-venue {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+
+        .pub-doi {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .pub-empty {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
         /* ===== Responsive ===== */
         @media (max-width: 600px) {
             .hero { padding: 48px 0 32px; }
@@ -462,6 +524,28 @@
                      data-en="Developing SLAM and navigation algorithms for autonomous systems. Working on real-time localization, mapping, sensor fusion, and path planning using C++ and Python. Contributing to core perception and navigation modules deployed in production environments."
                 ></div>
             </div>
+        </section>
+
+        <!-- ====== PUBLICATIONS ====== -->
+        <section class="section" id="publications">
+            <h2><span class="icon">📄</span> <span data-zh="论文与专利" data-en="Publications & Patents">Publications & Patents</span></h2>
+
+            <!-- Sub-section: Papers -->
+            <h3 class="pub-subtitle" data-zh="📝 论文" data-en="📝 Papers">📝 Papers</h3>
+            <div class="pub-card">
+                <div class="pub-title">
+                    <a href="https://doi.org/10.1088/1361-6501/ac92a0" target="_blank" rel="noopener">
+                        A Robust RGB-D SLAM Based on Multiple Geometric Features and Semantic Segmentation in Dynamic Environments
+                    </a>
+                </div>
+                <div class="pub-authors">Benfa Kuang, Jie Yuan, Qiang Liu</div>
+                <div class="pub-venue">Measurement Science and Technology, Volume 34, Number 1 — 2023</div>
+                <div class="pub-doi">DOI: 10.1088/1361-6501/ac92a0</div>
+            </div>
+
+            <!-- Sub-section: Patents -->
+            <h3 class="pub-subtitle" style="margin-top: 24px;" data-zh="📜 专利" data-en="📜 Patents">📜 Patents</h3>
+            <p class="pub-empty" data-zh="专利信息即将更新。" data-en="Patent information coming soon.">Patent information coming soon.</p>
         </section>
 
         <!-- ====== EDUCATION ====== -->
