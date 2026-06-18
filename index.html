@@ -1,26 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benfa Kuang — Navigation Algorithm Engineer | SLAM Developer</title>
-    <meta name="description" content="Benfa Kuang — Navigation Algorithm Engineer specializing in SLAM, robotics perception, and autonomous systems. Based in Shenzhen, China.">
-    <meta name="keywords" content="Benfa Kuang, Navigation Algorithm Engineer, SLAM, C++, Python, Robotics, Autonomous Systems, Shenzhen">
+    <title>Benfa Kuang 匡本发 — 导航算法工程师 | SLAM Developer</title>
+    <meta name="description" content="Benfa Kuang 匡本发 — 导航算法工程师，专注于SLAM、机器人感知与自主系统。坐标中国深圳。">
+    <meta name="keywords" content="Benfa Kuang, 匡本发, 导航算法工程师, SLAM, C++, Python, 机器人, 自主系统, 深圳">
     <meta name="author" content="Benfa Kuang">
     <meta name="google-site-verification" content="AYmOQFD-wlkIz9J9M4Xmh6uB8ApzVZt2PcMZuTx5xfM">
     <meta name="msvalidate.01" content="CAE3969B11453E3E50CE88B8A9BB4FDC">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://kbfvictory.github.io/benfakuang.github.io/">
     <!-- Open Graph (social preview) -->
-    <meta property="og:title" content="Benfa Kuang — Navigation Algorithm Engineer">
-    <meta property="og:description" content="SLAM, robotics perception, autonomous systems. C++ & Python. Based in Shenzhen.">
+    <meta property="og:title" content="Benfa Kuang 匡本发 — 导航算法工程师">
+    <meta property="og:description" content="SLAM、机器人感知、自主系统。C++ & Python。坐标深圳。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kbfvictory.github.io/benfakuang.github.io/">
     <meta property="og:site_name" content="Benfa Kuang">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:locale:alternate" content="en_US">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Benfa Kuang — Navigation Algorithm Engineer">
-    <meta name="twitter:description" content="SLAM, robotics perception, autonomous systems. C++ & Python. Based in Shenzhen.">
+    <meta name="twitter:title" content="Benfa Kuang 匡本发 — 导航算法工程师">
+    <meta name="twitter:description" content="SLAM、机器人感知、自主系统。C++ & Python。坐标深圳。">
     <style>
         /* ===== Reset & Base ===== */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,7 +41,7 @@
             --purple: #a371f7;
             --radius: 12px;
             --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-            --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --font-sans: 'Segoe UI', system-ui, -apple-system, 'Microsoft YaHei', 'PingFang SC', sans-serif;
         }
 
         html { scroll-behavior: smooth; }
@@ -50,6 +52,39 @@
             color: var(--text);
             line-height: 1.6;
             min-height: 100vh;
+        }
+
+        /* ===== Language Toggle ===== */
+        .lang-toggle {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100;
+            display: flex;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--bg-card);
+        }
+
+        .lang-btn {
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .lang-btn:hover { color: var(--text); }
+
+        .lang-btn.active {
+            background: var(--accent);
+            color: #fff;
         }
 
         /* ===== Animated Grid Background ===== */
@@ -101,7 +136,14 @@
             font-size: 2.4rem;
             font-weight: 700;
             letter-spacing: -0.5px;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
+        }
+
+        .hero .chinese-name {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 400;
         }
 
         .hero .tagline {
@@ -192,7 +234,6 @@
         .contact-icon.phone { background: rgba(63, 185, 80, 0.15); color: var(--green); }
         .contact-icon.email { background: rgba(88, 166, 255, 0.15); color: var(--accent); }
         .contact-icon.location { background: rgba(210, 153, 29, 0.15); color: var(--orange); }
-        .contact-icon.github { background: rgba(163, 113, 247, 0.15); color: var(--purple); }
 
         .contact-label {
             font-size: 0.75rem;
@@ -315,14 +356,16 @@
         @media (max-width: 600px) {
             .hero { padding: 48px 0 32px; }
             .hero h1 { font-size: 1.8rem; }
+            .hero .chinese-name { font-size: 1.1rem; }
             .section { padding: 20px; }
             .contact-grid { grid-template-columns: 1fr; }
             .edu-item { flex-direction: column; gap: 2px; }
+            .lang-toggle { top: 10px; right: 10px; }
         }
 
         /* ===== Print Styles ===== */
         @media print {
-            .bg-grid { display: none; }
+            .bg-grid, .lang-toggle { display: none; }
             body { background: #fff; color: #000; }
             .section { border: 1px solid #ccc; background: #fff; box-shadow: none; }
             .section h2 { color: #000; }
@@ -333,12 +376,19 @@
 
     <div class="bg-grid"></div>
 
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="zh" onclick="switchLang('zh')" title="切换到中文">中</button>
+        <button class="lang-btn" data-lang="en" onclick="switchLang('en')" title="Switch to English">EN</button>
+    </div>
+
     <div class="container">
 
         <!-- ====== HERO ====== -->
         <header class="hero">
-            <div class="avatar">B</div>
+            <div class="avatar">匡</div>
             <h1>Benfa Kuang</h1>
+            <p class="chinese-name">匡本发</p>
             <p class="tagline">
                 <span id="typewriter-text"></span><span class="cursor"></span>
             </p>
@@ -346,27 +396,27 @@
 
         <!-- ====== CONTACT ====== -->
         <section class="section" id="contact">
-            <h2><span class="icon">📬</span> Contact</h2>
+            <h2><span class="icon">📬</span> <span data-zh="联系方式" data-en="Contact">Contact</span></h2>
             <div class="contact-grid">
                 <a href="tel:19973561580" class="contact-item">
                     <div class="contact-icon phone">📱</div>
                     <div>
-                        <div class="contact-label">Mobile</div>
+                        <div class="contact-label" data-zh="手机" data-en="Mobile">Mobile</div>
                         <div class="contact-value">19973561580</div>
                     </div>
                 </a>
                 <a href="mailto:1763554768@qq.com" class="contact-item">
                     <div class="contact-icon email">✉️</div>
                     <div>
-                        <div class="contact-label">Email</div>
+                        <div class="contact-label" data-zh="邮箱" data-en="Email">Email</div>
                         <div class="contact-value">1763554768@qq.com</div>
                     </div>
                 </a>
                 <div class="contact-item">
                     <div class="contact-icon location">📍</div>
                     <div>
-                        <div class="contact-label">Location</div>
-                        <div class="contact-value">Shenzhen, China</div>
+                        <div class="contact-label" data-zh="城市" data-en="Location">Location</div>
+                        <div class="contact-value" data-zh="中国·深圳" data-en="Shenzhen, China">Shenzhen, China</div>
                     </div>
                 </div>
             </div>
@@ -374,8 +424,8 @@
 
         <!-- ====== ABOUT ====== -->
         <section class="section" id="about">
-            <h2><span class="icon">👤</span> About Me</h2>
-            <p class="about-text">
+            <h2><span class="icon">👤</span> <span data-zh="关于我" data-en="About Me">About Me</span></h2>
+            <p class="about-text" data-zh="你好！我是一名导航算法工程师，专注于SLAM（同步定位与建图）、机器人感知与自主系统领域。精通C++和Python，为复杂环境中的实时导航开发高性能算法。我热衷于推动自主系统感知能力的边界。">
                 Hello! I'm a Navigation Algorithm Engineer specializing in SLAM (Simultaneous
                 Localization and Mapping), robotics perception, and autonomous systems. With
                 strong proficiency in C++ and Python, I develop high-performance algorithms
@@ -386,16 +436,16 @@
 
         <!-- ====== SKILLS ====== -->
         <section class="section" id="skills">
-            <h2><span class="icon">🛠️</span> Skills</h2>
+            <h2><span class="icon">🛠️</span> <span data-zh="技能" data-en="Skills">Skills</span></h2>
             <div class="skills-container">
                 <span class="skill-tag">C++</span>
                 <span class="skill-tag">Python</span>
                 <span class="skill-tag">SLAM</span>
                 <span class="skill-tag">ROS / ROS2</span>
-                <span class="skill-tag">Computer Vision</span>
-                <span class="skill-tag">Sensor Fusion</span>
-                <span class="skill-tag">Path Planning</span>
-                <span class="skill-tag">Kalman Filters</span>
+                <span class="skill-tag" data-zh="计算机视觉" data-en="Computer Vision">Computer Vision</span>
+                <span class="skill-tag" data-zh="传感器融合" data-en="Sensor Fusion">Sensor Fusion</span>
+                <span class="skill-tag" data-zh="路径规划" data-en="Path Planning">Path Planning</span>
+                <span class="skill-tag" data-zh="卡尔曼滤波" data-en="Kalman Filters">Kalman Filters</span>
                 <span class="skill-tag">LiDAR</span>
                 <span class="skill-tag">OpenCV</span>
                 <span class="skill-tag">Git</span>
@@ -405,12 +455,12 @@
 
         <!-- ====== EXPERIENCE ====== -->
         <section class="section" id="experience">
-            <h2><span class="icon">💼</span> Experience</h2>
+            <h2><span class="icon">💼</span> <span data-zh="工作经历" data-en="Experience">Experience</span></h2>
             <div class="timeline-item">
-                <div class="timeline-date">2023.7 — Present</div>
-                <div class="timeline-title">Navigation Algorithm Engineer</div>
+                <div class="timeline-date">2023.7 — <span data-zh="至今" data-en="Present">Present</span></div>
+                <div class="timeline-title" data-zh="导航算法工程师" data-en="Navigation Algorithm Engineer">Navigation Algorithm Engineer</div>
                 <div class="timeline-company">Broncus</div>
-                <div class="timeline-desc">
+                <div class="timeline-desc" data-zh="为自主系统开发SLAM和导航算法。使用C++和Python实现实时定位、建图、传感器融合与路径规划。参与核心感知与导航模块的研发，相关模块已部署于生产环境。">
                     Developing SLAM and navigation algorithms for autonomous systems. Working on
                     real-time localization, mapping, sensor fusion, and path planning using C++
                     and Python. Contributing to core perception and navigation modules deployed
@@ -421,18 +471,18 @@
 
         <!-- ====== EDUCATION ====== -->
         <section class="section" id="education">
-            <h2><span class="icon">🎓</span> Education</h2>
+            <h2><span class="icon">🎓</span> <span data-zh="教育背景" data-en="Education">Education</span></h2>
             <div class="edu-item">
                 <div>
-                    <div class="edu-degree">M.S. in Control Science and Engineering</div>
-                    <div class="edu-school">Xinjiang University</div>
+                    <div class="edu-degree" data-zh="控制科学与工程 硕士" data-en="M.S. in Control Science and Engineering">M.S. in Control Science and Engineering</div>
+                    <div class="edu-school" data-zh="新疆大学" data-en="Xinjiang University">Xinjiang University</div>
                 </div>
                 <div class="edu-year">2020.9 — 2023.6</div>
             </div>
             <div class="edu-item">
                 <div>
-                    <div class="edu-degree">B.S. in Electrical Engineering and Automation</div>
-                    <div class="edu-school">Tarim University</div>
+                    <div class="edu-degree" data-zh="电气工程及其自动化 学士" data-en="B.S. in Electrical Engineering and Automation">B.S. in Electrical Engineering and Automation</div>
+                    <div class="edu-school" data-zh="塔里木大学" data-en="Tarim University">Tarim University</div>
                 </div>
                 <div class="edu-year">2015.9 — 2019.6</div>
             </div>
@@ -440,22 +490,25 @@
 
         <!-- ====== FOOTER ====== -->
         <footer class="footer">
-            <p>Made with <span class="heart">❤</span> by Benfa Kuang &copy; 2026</p>
+            <p data-zh="由 匡本发 用 ❤ 制作 &copy; 2026" data-en="Made with ❤ by Benfa Kuang &copy; 2026">Made with <span class="heart">❤</span> by Benfa Kuang &copy; 2026</p>
         </footer>
 
     </div>
 
-    <!-- ====== Typewriter Effect ====== -->
+    <!-- ====== Typewriter + Language Switch ====== -->
     <script>
-        const phrases = [
-            'Navigation Algorithm Engineer',
-            'SLAM Developer',
-            'C++ & Python Enthusiast',
-            'Problem Solver',
-        ];
+        // Language data
+        const typewriterData = {
+            zh: ['导航算法工程师', 'SLAM 开发者', 'C++ & Python 爱好者', '问题解决者'],
+            en: ['Navigation Algorithm Engineer', 'SLAM Developer', 'C++ & Python Enthusiast', 'Problem Solver']
+        };
+
+        let currentLang = 'zh';
+        let phrases = typewriterData[currentLang];
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
+        let typewriterTimer = null;
         const el = document.getElementById('typewriter-text');
 
         function type() {
@@ -471,7 +524,7 @@
             let speed = isDeleting ? 40 : 80;
 
             if (!isDeleting && charIndex === current.length) {
-                speed = 1500; // pause at end
+                speed = 1500;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
@@ -479,10 +532,71 @@
                 speed = 300;
             }
 
-            setTimeout(type, speed);
+            typewriterTimer = setTimeout(type, speed);
         }
 
-        type();
+        function resetTypewriter() {
+            clearTimeout(typewriterTimer);
+            phraseIndex = 0;
+            charIndex = 0;
+            isDeleting = false;
+            el.textContent = '';
+            type();
+        }
+
+        function switchLang(lang) {
+            if (lang === currentLang) return;
+            currentLang = lang;
+
+            // Update toggle buttons
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.lang-btn[data-lang="${lang}"]`).classList.add('active');
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+            // Update all elements with data-zh/data-en
+            document.querySelectorAll('[data-zh][data-en]').forEach(elem => {
+                const text = elem.getAttribute(`data-${lang}`);
+                if (text !== null) {
+                    elem.textContent = text;
+                }
+            });
+
+            // Update footer with heart span
+            const footer = document.querySelector('.footer p');
+            if (lang === 'zh') {
+                footer.innerHTML = '由 匡本发 用 <span class="heart" style="color:#f85149;">❤</span> 制作 &copy; 2026';
+            } else {
+                footer.innerHTML = 'Made with <span class="heart" style="color:#f85149;">❤</span> by Benfa Kuang &copy; 2026';
+            }
+
+            // Restart typewriter
+            phrases = typewriterData[lang];
+            resetTypewriter();
+
+            // Save preference
+            try { localStorage.setItem('lang', lang); } catch(e) {}
+        }
+
+        // Load saved language preference
+        (function init() {
+            try {
+                const saved = localStorage.getItem('lang');
+                if (saved && saved !== 'zh') {
+                    switchLang('zh');
+                    switchLang(saved);
+                    return;
+                }
+            } catch(e) {}
+            // Default: detect browser language, default to Chinese
+            const browserLang = navigator.language || navigator.userLanguage || '';
+            if (browserLang.startsWith('zh')) {
+                switchLang('zh');
+            } else {
+                switchLang('en');
+            }
+        })();
     </script>
 
 </body>
