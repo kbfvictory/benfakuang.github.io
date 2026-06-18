@@ -339,6 +339,7 @@
 
         .edu-degree { font-weight: 600; }
         .edu-school { color: var(--text-muted); font-size: 0.9rem; }
+        .edu-detail { color: var(--text-muted); font-size: 0.8rem; margin-top: 2px; font-style: italic; }
         .edu-year { color: var(--text-muted); font-size: 0.85rem; font-family: var(--font-mono); white-space: nowrap; }
 
         /* ===== Footer ===== */
@@ -414,6 +415,28 @@
             font-style: italic;
         }
 
+        .achievement-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievement-list li {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 3px 0 3px 16px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .achievement-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.7rem;
+            top: 5px;
+        }
+
         /* ===== Responsive ===== */
         @media (max-width: 600px) {
             .hero { padding: 48px 0 32px; }
@@ -464,7 +487,7 @@
                     <div class="contact-icon phone">📱</div>
                     <div>
                         <div class="contact-label" data-zh="手机" data-en="Mobile">Mobile</div>
-                        <div class="contact-value">19973561580</div>
+                        <div class="contact-value">+86 19973561580</div>
                     </div>
                 </a>
                 <a href="mailto:1763554768@qq.com" class="contact-item">
@@ -478,7 +501,7 @@
                     <div class="contact-icon location">📍</div>
                     <div>
                         <div class="contact-label" data-zh="城市" data-en="Location">Location</div>
-                        <div class="contact-value" data-zh="中国·深圳" data-en="Shenzhen, China">Shenzhen, China</div>
+                        <div class="contact-value" data-zh="广东省·深圳" data-en="Shenzhen, Guangdong, China">Shenzhen, Guangdong, China</div>
                     </div>
                 </div>
             </div>
@@ -488,8 +511,8 @@
         <section class="section" id="about">
             <h2><span class="icon">👤</span> <span data-zh="关于我" data-en="About Me">About Me</span></h2>
             <p class="about-text"
-               data-zh="你好！我是一名导航算法工程师，专注于SLAM（同步定位与建图）、机器人感知与自主系统领域。精通C++和Python，为复杂环境中的实时导航开发高性能算法。我热衷于推动自主系统感知能力的边界。"
-               data-en="Hello! I'm a Navigation Algorithm Engineer specializing in SLAM (Simultaneous Localization and Mapping), robotics perception, and autonomous systems. With strong proficiency in C++ and Python, I develop high-performance algorithms for real-time navigation in complex environments. I'm passionate about pushing the boundaries of what autonomous systems can perceive and achieve."
+               data-zh="你好！我是一名导航算法工程师，硕士毕业于新疆大学控制科学与工程专业，研究方向为室内低纹理环境下移动机器人语义SLAM。目前就职于杭州堃博生物科技有限公司（堃博医疗），负责肺部图像导航算法与柔性机器人融合导航算法的研发。精通C++和Python，熟悉ORB-SLAM2、OpenCV、PCL、Eigen等经典框架与开源库，在SLAM、语义分割和动态环境定位方面有深入研究。已发表SCI论文一篇（第一作者），拥有发明专利两项。"
+               data-en="Hello! I'm a Navigation Algorithm Engineer with a Master's degree in Control Science and Engineering from Xinjiang University, specializing in semantic SLAM for mobile robots in low-texture indoor environments. Currently working at Hangzhou Broncus Medical Technology Co., Ltd., developing lung image navigation algorithms and flexible robot fusion navigation systems. Proficient in C++ and Python, with deep experience in ORB-SLAM2, OpenCV, PCL, and Eigen. I have published one SCI paper (first author) and hold two invention patents in the field of SLAM and dynamic environment localization."
             ></p>
         </section>
 
@@ -499,16 +522,21 @@
             <div class="skills-container">
                 <span class="skill-tag">C++</span>
                 <span class="skill-tag">Python</span>
+                <span class="skill-tag">C</span>
                 <span class="skill-tag">SLAM</span>
-                <span class="skill-tag">ROS / ROS2</span>
-                <span class="skill-tag" data-zh="计算机视觉" data-en="Computer Vision">Computer Vision</span>
+                <span class="skill-tag">ORB-SLAM2</span>
+                <span class="skill-tag">ROS</span>
+                <span class="skill-tag">OpenCV</span>
+                <span class="skill-tag">PCL</span>
+                <span class="skill-tag">Eigen</span>
+                <span class="skill-tag">Pangolin</span>
+                <span class="skill-tag" data-zh="语义分割" data-en="Semantic Segmentation">Semantic Segmentation</span>
+                <span class="skill-tag" data-zh="特征提取" data-en="Feature Extraction">Feature Extraction</span>
                 <span class="skill-tag" data-zh="传感器融合" data-en="Sensor Fusion">Sensor Fusion</span>
                 <span class="skill-tag" data-zh="路径规划" data-en="Path Planning">Path Planning</span>
-                <span class="skill-tag" data-zh="卡尔曼滤波" data-en="Kalman Filters">Kalman Filters</span>
-                <span class="skill-tag">LiDAR</span>
-                <span class="skill-tag">OpenCV</span>
-                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Visual Studio</span>
                 <span class="skill-tag">Linux</span>
+                <span class="skill-tag">Git</span>
             </div>
         </section>
 
@@ -517,12 +545,17 @@
             <h2><span class="icon">💼</span> <span data-zh="工作经历" data-en="Experience">Experience</span></h2>
             <div class="timeline-item">
                 <div class="timeline-date">2023.7 — <span data-zh="至今" data-en="Present">Present</span></div>
-                <div class="timeline-title" data-zh="导航算法工程师" data-en="Navigation Algorithm Engineer">Navigation Algorithm Engineer</div>
-                <div class="timeline-company">杭州堃博生物科技有限公司</div>
+                <div class="timeline-title" data-zh="算法工程师" data-en="Algorithm Engineer">Algorithm Engineer</div>
+                <div class="timeline-company" data-zh="杭州堃博生物科技有限公司（堃博医疗）" data-en="Hangzhou Broncus Medical Technology Co., Ltd.">杭州堃博生物科技有限公司（堃博医疗）</div>
                 <div class="timeline-desc"
-                     data-zh="为自主系统开发SLAM和导航算法。使用C++和Python实现实时定位、建图、传感器融合与路径规划。参与核心感知与导航模块的研发，相关模块已部署于生产环境。"
-                     data-en="Developing SLAM and navigation algorithms for autonomous systems. Working on real-time localization, mapping, sensor fusion, and path planning using C++ and Python. Contributing to core perception and navigation modules deployed in production environments."
+                     data-zh="负责 LungPointV5 图像导航算法优化：基于深度估计模型及PNP算法改进了原肺部图像导航算法，解决了视觉里程计位姿估计尺度不确定问题，改进了肺部气道限制算法，提高了整个算法同步追踪的鲁棒性。负责柔性机器人融合导航算法研发：基于图像数据、光纤数据及机器人运动数据开发了融合导航算法，并在精量二代机器人上进行了动物实验。"
+                     data-en="Led optimization of the LungPointV5 image navigation algorithm: improved the original lung image navigation algorithm based on depth estimation models and PNP, resolving scale ambiguity in visual odometry pose estimation. Enhanced airway constraint algorithms, improving overall tracking robustness. Developed a fusion navigation algorithm for flexible robots using image, fiber optic, and robot motion data, validated through animal experiments on the Jingliang II robot."
                 ></div>
+                <div class="pub-subtitle" style="margin-top: 12px; margin-bottom: 4px;" data-zh="工作成果" data-en="Achievements">Achievements</div>
+                <ul class="achievement-list">
+                    <li data-zh="图像导航算法专利：摄像机定位方法、装置、系统及非易失性存储介质（公开号：CN119863517A）" data-en="Image navigation algorithm patent: Camera Positioning Method, Device, System and Non-Volatile Storage Medium (CN119863517A)">图像导航算法专利：摄像机定位方法、装置、系统及非易失性存储介质（公开号：CN119863517A）</li>
+                    <li data-zh="融合导航算法专利：摄像机融合定位方法、装置、系统及非易失性存储介质（公开号：CN119863518A）" data-en="Fusion navigation algorithm patent: Camera Fusion Positioning Method, Device, System and Non-Volatile Storage Medium (CN119863518A)">融合导航算法专利：摄像机融合定位方法、装置、系统及非易失性存储介质（公开号：CN119863518A）</li>
+                </ul>
             </div>
         </section>
 
@@ -585,15 +618,17 @@
                 <div>
                     <div class="edu-degree" data-zh="控制科学与工程 硕士" data-en="M.S. in Control Science and Engineering">M.S. in Control Science and Engineering</div>
                     <div class="edu-school" data-zh="新疆大学" data-en="Xinjiang University">Xinjiang University</div>
+                    <div class="edu-detail" data-zh="研究方向：室内低纹理环境下移动机器人语义SLAM方法研究" data-en="Research: Semantic SLAM for mobile robots in low-texture indoor environments">研究方向：室内低纹理环境下移动机器人语义SLAM方法研究</div>
                 </div>
-                <div class="edu-year">2020.9 — 2023.6</div>
+                <div class="edu-year">2020.09 — 2023.06</div>
             </div>
             <div class="edu-item">
                 <div>
                     <div class="edu-degree" data-zh="电气工程及其自动化 学士" data-en="B.S. in Electrical Engineering and Automation">B.S. in Electrical Engineering and Automation</div>
                     <div class="edu-school" data-zh="塔里木大学" data-en="Tarim University">Tarim University</div>
+                    <div class="edu-detail" data-zh="毕业设计：晶闸管-直流电动机调速控制系统的设计与研究" data-en="Thesis: Design and Research of Thyristor-DC Motor Speed Control System">毕业设计：晶闸管-直流电动机调速控制系统的设计与研究</div>
                 </div>
-                <div class="edu-year">2015.9 — 2019.6</div>
+                <div class="edu-year">2015.09 — 2019.06</div>
             </div>
         </section>
 
